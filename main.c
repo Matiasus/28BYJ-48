@@ -28,14 +28,15 @@ int main (void)
   // init
   BYJ48_Init ();
   // 1 turn clockwise
-  BYJ48_TurnClockwise ();
+  BYJ48_OneTurnClockwise ();
   // turn off 
   BYJ48_TurnOff ();
 
+  // delay
   _delay_ms(1000);
 
   // 1 turn anticlockwise
-  BYJ48_TurnAntiClockwise ();
+  BYJ48_OneTurnAntiClockwise ();
   // turn off 
   BYJ48_TurnOff ();
 
