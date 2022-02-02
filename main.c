@@ -14,7 +14,6 @@
  */
 
 // include libraries
-#include <util/delay.h>
 #include "lib/byj48.h"
 
 /**
@@ -28,30 +27,17 @@ int main (void)
 {
   // init
   BYJ48_Init ();
+  // 1 turn clockwise
+  BYJ48_TurnClockwise ();
+  // turn off 
+  BYJ48_TurnOff ();
 
-  PORTC = 0b0000000;
   _delay_ms(1000);
 
-  PORTC = 0b0000010;
-  _delay_ms(1000);
-
-  PORTC = 0b0000110;
-  _delay_ms(1000);
-
-  PORTC = 0b0000100;
-  _delay_ms(1000);
-
-  PORTC = 0b0001100;
-  _delay_ms(1000);
-
-  PORTC = 0b0001000;
-  _delay_ms(1000);
-
-  PORTC = 0b0011000;
-  _delay_ms(1000);
-
-  PORTC = 0b0010000;
-  _delay_ms(1000);
+  // 1 turn anticlockwise
+  BYJ48_TurnAntiClockwise ();
+  // turn off 
+  BYJ48_TurnOff ();
 
   // EXIT
   // ------------------------------------------------- 

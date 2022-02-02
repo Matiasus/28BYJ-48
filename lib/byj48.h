@@ -18,6 +18,7 @@
 #define __BYJ48_H__
 
 #include <avr/io.h>
+#include <util/delay.h>
 #include <stdio.h>
 
   // Success
@@ -48,16 +49,16 @@
     #endif
 
     #ifndef BYJ48_IN1    
-      #define BYJ48_IN1       1
+      #define BYJ48_IN1       0
     #endif
     #ifndef BYJ48_IN2
-      #define BYJ48_IN2       2
+      #define BYJ48_IN2       1
     #endif
     #ifndef BYJ48_IN3
-      #define BYJ48_IN3       3
+      #define BYJ48_IN3       2
     #endif
     #ifndef BYJ48_IN4
-      #define BYJ48_IN4       4
+      #define BYJ48_IN4       3
     #endif
 
   #endif
@@ -68,7 +69,13 @@
   #define SETBIT(REG, BIT) { REG |= (1 << BIT); }
   // clear bit
   #define CLRBIT(REG, BIT) { REG &= ~(1 << BIT); }
+
+  #define TURNOFF             0xF0
+  #define HALFSTEPCOUNT       8
   
+  // global half step sequence
+  extern const uint8_t g_halfstep[];
+
   /**
    * @desc    Init 28BYJ-48
    *
@@ -77,6 +84,51 @@
    * @return  void
    */
   void BYJ48_Init (void);
+
+  /**
+   * @desc    
+   *
+   * @param   void
+   *
+   * @return  void
+   */
+  void BYJ48_HalfStepClockwise (void);
+
+  /**
+   * @desc    
+   *
+   * @param   void
+   *
+   * @return  void
+   */
+  void BYJ48_HalfStepAntiClockwise (void);
+
+  /**
+   * @desc    
+   *
+   * @param   void
+   *
+   * @return  void
+   */
+  void BYJ48_OneTurnClockwise (void);
+
+  /**
+   * @desc    
+   *
+   * @param   void
+   *
+   * @return  void
+   */
+  void BYJ48_OneTurnAntiClockwise (void);
+
+  /**
+   * @desc    
+   *
+   * @param   void
+   *
+   * @return  void
+   */
+  void BYJ48_TurnOff (void);
 
   /**
    * @desc    Set DDR 28BYJ-48 INs
