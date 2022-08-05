@@ -81,7 +81,6 @@ int main (void)
   // ------------------------------
   // init
   BYJ48_Init ();
-
 /*
   // 1 turn clockwise
   BYJ48_OneTurnClockwise ();
@@ -105,52 +104,60 @@ int main (void)
 
       // null if number less than 10
       if (state == 0) {
-        // int to text
-        sprintf (str, "%d", state);
         // set position
         SSD1306_SetPosition (55,2);
         // int to text
         SSD1306_DrawString ("===");
+/*
+        // int to text
+        sprintf (str, "%d", state);
         // set position
         SSD1306_SetPosition (61,1);
         // draw string
         SSD1306_DrawString (str);
+*/
         // update
         SSD1306_UpdateScreen (addr);
         // turn off 
         BYJ48_TurnOff (); 
       // null if number less than 10
       } else if (state > tmp) {
-        // int to text
-        sprintf (str, "%d", state);
         // set position
         SSD1306_SetPosition (55,2);
         // int to text
         SSD1306_DrawString ("==>");
+/*
+        // int to text
+        sprintf (str, "%d", state);
         // set position
         SSD1306_SetPosition (61,1);
         // draw string
         SSD1306_DrawString (str);
+*/
         // update
         SSD1306_UpdateScreen (addr);
         // 1 turn clockwise
         BYJ48_OneTurnClockwise ();
       } else {
-        // int to text
-        sprintf (str, "%d", state);
         // set position
         SSD1306_SetPosition (55,2);
         // int to text
         SSD1306_DrawString ("<==");
+/*
+        // int to text
+        sprintf (str, "%d", state);
         // set position
         SSD1306_SetPosition (61,1);
         // draw string
         SSD1306_DrawString (str);
+*/
         // update
         SSD1306_UpdateScreen (addr);
         // 1 turn anticlockwise
         BYJ48_OneTurnAntiClockwise ();
       }
+      // turn off 
+      BYJ48_TurnOff ();
       // set tmp
       tmp = state;
       // enable global interrupts 
