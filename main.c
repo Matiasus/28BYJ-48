@@ -81,21 +81,8 @@ int main (void)
   // ------------------------------
   // init
   BYJ48_Init ();
-/*
-  // 1 turn clockwise
-  BYJ48_OneTurnClockwise ();
-  // turn off 
-  BYJ48_TurnOff ();
 
-  // delay
-  _delay_ms(1000);
-
-  // 1 turn anticlockwise
-  BYJ48_OneTurnAntiClockwise ();
-  // turn off 
-  BYJ48_TurnOff ();
-*/
-
+  // main loop
   while (1) {
     // catch changed state
     if (tmp != state) {
@@ -108,49 +95,26 @@ int main (void)
         SSD1306_SetPosition (55,2);
         // int to text
         SSD1306_DrawString ("===");
-/*
-        // int to text
-        sprintf (str, "%d", state);
-        // set position
-        SSD1306_SetPosition (61,1);
-        // draw string
-        SSD1306_DrawString (str);
-*/
         // update
         SSD1306_UpdateScreen (addr);
         // turn off 
         BYJ48_TurnOff (); 
-      // null if number less than 10
+      // to right
       } else if (state > tmp) {
         // set position
         SSD1306_SetPosition (55,2);
         // int to text
         SSD1306_DrawString ("==>");
-/*
-        // int to text
-        sprintf (str, "%d", state);
-        // set position
-        SSD1306_SetPosition (61,1);
-        // draw string
-        SSD1306_DrawString (str);
-*/
         // update
         SSD1306_UpdateScreen (addr);
         // 1 turn clockwise
         BYJ48_OneTurnClockwise ();
+      // to left
       } else {
         // set position
         SSD1306_SetPosition (55,2);
         // int to text
         SSD1306_DrawString ("<==");
-/*
-        // int to text
-        sprintf (str, "%d", state);
-        // set position
-        SSD1306_SetPosition (61,1);
-        // draw string
-        SSD1306_DrawString (str);
-*/
         // update
         SSD1306_UpdateScreen (addr);
         // 1 turn anticlockwise
