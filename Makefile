@@ -14,7 +14,7 @@
 # ------------------------------------------------------------------
 #
 # Final file
-TARGET      	= main
+TARGET        = main
 #
 # Library directory
 LIBDIR        = lib
