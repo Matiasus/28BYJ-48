@@ -45,7 +45,7 @@ OBJCOPY       = avr-objcopy
 #
 # Objcopy, create hex file flags 
 # -R .eeprom -O ihex or -j .data -j .text -O ihex
-OBJFLAGS    	= -j .data -j .text -O ihex
+OBJFLAGS      = -j .data -j .text -O ihex
 #
 # Size of file
 AVRSIZE       = avr-size
@@ -93,30 +93,23 @@ main: $(TARGET).hex
 $(TARGET).hex: $(TARGET).elf
 	$(OBJCOPY) $(OBJFLAGS) $(TARGET).elf $(TARGET).hex
 	$(AVRSIZE) $(TARGET).elf
-
 # 
 # Create .elf file
 $(TARGET).elf:$(OBJECTS) 
 	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET).elf
-
 #
 # Create object files
 %.o: %.c
 	 $(CC) $(CFLAGS) -c $< -o $@
-
 # 
 # Program avr - send file to programmer
 flash: 
 	$(AVRDUDE) $(AVRDUDE_FLAGS) flash:w:$(TARGET).hex:i
-
 #
 # Clean
 clean: 
 	rm -f $(OBJECTS) $(TARGET).elf $(TARGET).map
-
 #
 # Cleanall
 cleanall: 
 	rm -f $(OBJECTS) $(TARGET).hex $(TARGET).elf $(TARGET).map
-
-
