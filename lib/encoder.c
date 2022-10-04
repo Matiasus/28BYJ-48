@@ -7,7 +7,7 @@
  *
  * @author      Marian Hrinko
  * @datum       06.10.2020
- * @update      19.07.2021
+ * @update      04.10.2022
  * @file        encoder.c
  * @version     1.0
  * @tested      AVR Atmega328
@@ -46,4 +46,35 @@ void Encoder_Init (void)
   EICRA |= (1 << ISC01) | (1 << ISC00) | (1 << ISC11) | (1 << ISC10);
   // global interupts enable
   sei ();
+}
+
+/**
+ * @desc    Encoder Read
+ * @insp    https://chome.nerpa.tech/mcu/reading-rotary-encoder-on-arduino/
+ *
+ * @param   void
+ *
+ * @return  char
+ */
+void Encoder_Read (void)
+{
+  // allowable states 
+  //  0 - error
+  //  1 - clockwise
+  // -1 - counterclockwise
+  uint8_t states[] = {
+   0, 1,-1, 0,
+  -1, 0, 0, 1,
+   1, 0, 0,-1,
+   0,-1, 1, 0};
+
+  // declare previous state with set to 0
+  static uint8_t prev = 0;
+  // read PINs value ENCODER_CLK & ENCODER_DT
+  uint8_t pin_value = (1 << ((PIN & (1 << ENCODER_CLK)) >> ENCODER_CLK)) | ((PIN & (1 << ENCODER_DT)) >> (ENCODER_DT));
+  prev <<= 2;
+  prev |= pin_value & 0x0f;
+
+  // return state
+  return states[prev];
 }

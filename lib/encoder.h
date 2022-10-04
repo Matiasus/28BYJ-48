@@ -91,4 +91,14 @@
    */
   void Encoder_Init (void);
 
+  /**
+  * @desc    Encoder Read
+  * @insp    https://chome.nerpa.tech/mcu/reading-rotary-encoder-on-arduino/
+  *
+  * @param   void
+  *
+  * @return  char
+  */
+  void Encoder_Read (void);
+
 #endif
